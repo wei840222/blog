@@ -10,7 +10,7 @@ type User struct {
 	gorm.Model
 	Name       string
 	AvatarURL  sql.NullString
-	LINEUserID sql.NullString `gorm:"size:33,unique"`
+	LINEUserID sql.NullString `gorm:"size:33,uniqueIndex"`
 }
 
 func CreateUser(user *User) (*User, error) {
@@ -26,6 +26,16 @@ func GetUser(id uint) (*User, error) {
 		Model: gorm.Model{
 			ID: id,
 		},
+	}).First(&user).Error; err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
+func GetUserByLINEUserID(lineUserID string) (*User, error) {
+	var user User
+	if err := db.Where(User{
+		LINEUserID: StringToSqlNullString(lineUserID),
 	}).First(&user).Error; err != nil {
 		return nil, err
 	}

@@ -30,3 +30,17 @@ func TestGetUser(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, "TestGetUser", user.Name)
 }
+
+func TestGetUserByLINEUserID(t *testing.T) {
+	db.TruncateAllTable()
+	_, err := db.CreateUser(&db.User{
+		Name:       "GetUserByLINEUserID",
+		LINEUserID: db.StringToSqlNullString("U1234"),
+	})
+	assert.Nil(t, err)
+
+	user, err := db.GetUserByLINEUserID("U1234")
+	assert.Nil(t, err)
+	assert.Equal(t, "GetUserByLINEUserID", user.Name)
+	assert.Equal(t, "U1234", user.LINEUserID.String)
+}
