@@ -6,6 +6,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,5 +29,6 @@ func main() {
 	r := gin.Default()
 	r.POST("/graphql", graphqlHandler())
 	r.GET("/graphql/playground", playgroundHandler())
+	r.Use(static.Serve("/", static.LocalFile(".//web/dist", true)))
 	r.Run()
 }
