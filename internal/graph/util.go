@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/wei840222/blog/db"
-	"github.com/wei840222/blog/graph/model"
+	"github.com/wei840222/blog/internal/db"
+	"github.com/wei840222/blog/internal/graph/model"
 )
 
 func graphQLIDToDBID(id string) uint {

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/wei840222/blog/graph"
-	"github.com/wei840222/blog/graph/generated"
+	"github.com/wei840222/blog/internal/graph"
+	"github.com/wei840222/blog/internal/graph/generated"
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
@@ -26,7 +26,7 @@ func playgroundHandler() gin.HandlerFunc {
 
 func main() {
 	r := gin.Default()
-	r.Any("/graphql", graphqlHandler())
+	r.POST("/graphql", graphqlHandler())
 	r.GET("/graphql/playground", playgroundHandler())
 	r.Run()
 }
