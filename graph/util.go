@@ -28,6 +28,9 @@ func dbPostToGraphQLPost(post *db.Post) *model.Post {
 	return &model.Post{
 		ID:   fmt.Sprintf("post:%d", post.ID),
 		Text: post.Text,
+		User: &model.User{
+			ID: fmt.Sprintf("user:%d", post.UserID),
+		},
 	}
 }
 
@@ -35,5 +38,8 @@ func dbCommentToGraphQLComment(comment *db.Comment) *model.Comment {
 	return &model.Comment{
 		ID:   fmt.Sprintf("comment:%d", comment.ID),
 		Text: comment.Text,
+		User: &model.User{
+			ID: fmt.Sprintf("user:%d", comment.UserID),
+		},
 	}
 }
