@@ -1,7 +1,7 @@
 package db_test
 
 import (
-	"github.com/wei840222/blog/db"
+	"github.com/wei840222/blog/internal/db"
 
 	"testing"
 
