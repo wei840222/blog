@@ -1,0 +1,46 @@
+type User {
+  id: ID!
+  name: String!
+  avatarUrl: String
+  lineUserId: String
+}
+
+type Post {
+  id: ID!
+  text: String!
+  user: User!
+  comments: [Comment!]!
+}
+
+type Comment {
+  id: ID!
+  text: String!
+  user: User!
+}
+
+type Query {
+  posts: [Post!]!
+}
+
+input NewUser {
+  name: String!
+  avatarUrl: String
+  lineUserId: String
+}
+
+input NewPost {
+  text: String!
+  userId: ID!
+}
+
+input NewComment {
+  text: String!
+  postId: ID!
+  userId: ID!
+}
+
+type Mutation {
+  createUser(input: NewUser!): User!
+  createPost(input: NewPost!): Post!
+  createComment(input: NewComment!): Comment!
+}
