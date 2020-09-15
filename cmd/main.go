@@ -6,6 +6,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
@@ -27,6 +28,7 @@ func playgroundHandler() gin.HandlerFunc {
 
 func main() {
 	r := gin.Default()
+	r.Use(cors.Default())
 	r.POST("/graphql", graphqlHandler())
 	r.GET("/graphql/playground", playgroundHandler())
 	r.Use(static.Serve("/", static.LocalFile("./web/dist", false)))
