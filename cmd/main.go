@@ -29,6 +29,6 @@ func main() {
 	r := gin.Default()
 	r.POST("/graphql", graphqlHandler())
 	r.GET("/graphql/playground", playgroundHandler())
-	r.Use(static.Serve("/", static.LocalFile(".//web/dist", true)))
+	r.Use(static.Serve("/", static.LocalFile("./web/dist", false)))
 	r.Run()
 }
