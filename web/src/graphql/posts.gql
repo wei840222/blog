@@ -1,0 +1,20 @@
+query posts {
+  posts {
+    id
+    text
+    user {
+      id
+      name
+      avatarUrl
+    }
+    comments {
+      id
+      text
+      user {
+        id
+        name
+        avatarUrl
+      }
+    }
+  }
+}
