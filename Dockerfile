@@ -1,6 +1,8 @@
 FROM node:alpine AS build-web
 ADD ./web /src
 WORKDIR /src
+ENV VUE_APP_GRAPHQL_HTTP=https://fuck-word-blog.herokuapp.com/graphql
+ENV VUE_APP_GRAPHQL_WS=wss://fuck-word-blog.herokuapp.com/graphql
 RUN npm i
 RUN npm run build
 
